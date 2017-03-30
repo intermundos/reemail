@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { _removeCampaignFromList, _removeProgramFromList } from '../../logic/reducks/homeDuck';
 import _ from 'lodash';
+import Draggable from 'react-draggable';
 
 const ChosenCampaigns = (props) => {
     const { _selected } = props;
@@ -10,51 +11,57 @@ const ChosenCampaigns = (props) => {
     let totalSelectedPrograms = _.map(_selected, 'campaigns').length;
 
     return (
-        <div className="chosen__list">
+        <Draggable>
             {
-                totalSelectedPrograms > 1 ?
-                    <div className="title">
-                    { `Selected: ${ totalSelectedPrograms } Program${totalSelectedPrograms > 1 ? 's' : '' } with ${ totalSelectedCampaigns } Campaign${totalSelectedCampaigns > 1 ? 's' : '' }` }
-                    </div> :
-                    null
-            }
+                totalSelectedPrograms > 0 ?
+                    <div className="chosen__list">
+                        {
+                            totalSelectedPrograms > 0 ?
+                                <div className="title">
+                                    { `Selected: ${ totalSelectedPrograms } Program${totalSelectedPrograms > 1 ? 's' : '' } with ${ totalSelectedCampaigns } Campaign${totalSelectedCampaigns > 1 ? 's' : '' }` }
+                                </div> :
+                                null
+                        }
 
-            {
-                Object.keys(_selected).map((item, index) => {
-                    return (
+                        {
+                            Object.keys(_selected).map((item, index) => {
+                                return (
 
-                        <div className="selected__group" key={ item }>
-                            <div className="group group__program">
-                                <div className="header">
-                                    <a className="delete is-medium" onClick={ ()=> props._removeProgramFromList(item) }/>
-                                    Program #{ item }
-                                </div>
-                                <div className="program__data">{ _selected[item].program.name }</div>
-                            </div>
-
-                            <div className="group group__campaigns">
-                                <div className="header">Campaigns for program #{ item } </div>
-                                {
-                                    _selected[item].campaigns.map((c) => {
-                                        return (
-                                            <div className="campaign__unit" key={ c.id }>
-                                                <a className="delete is-small" onClick={ ()=> props._removeCampaignFromList(c, item) }/>
-                                                { c.id } - { c.name }
+                                    <div className="selected__group" key={ item }>
+                                        <div className="group group__program">
+                                            <div className="header">
+                                                <a className="delete is-medium" onClick={ ()=> props._removeProgramFromList(item) }/>
+                                                Program #{ item }
                                             </div>
-                                        )
-                                    })
-                                }
+                                            <div className="program__data">{ _selected[item].program.name }</div>
+                                        </div>
 
-                            </div>
-                        </div>
+                                        <div className="group group__campaigns">
+                                            <div className="header">Campaigns for program #{ item } </div>
+                                            {
+                                                _selected[item].campaigns.map((c) => {
+                                                    return (
+                                                        <div className="campaign__unit" key={ c.id }>
+                                                            <a className="delete is-small"
+                                                               onClick={ ()=> props._removeCampaignFromList(c, item) }
+                                                            />
+                                                            { c.id } - { c.name }
+                                                        </div>
+                                                    )
+                                                })
+                                            }
 
-                    )
-                })
+                                        </div>
+                                    </div>
+
+                                )
+                            })
+                        }
+                    </div>
+                    :
+                    <div></div>
             }
-
-
-
-        </div>
+        </Draggable>
     )
 };
 

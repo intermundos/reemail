@@ -1,11 +1,18 @@
 .chosen__list {
   position: fixed;
   right: 20px;
-  background-color: #f4f4f4;
-  z-index: 1;
+  background-color: #f26233;
+  z-index: 20;
   padding: 10px;
-  //box-shadow: -1px 1px 8px -3px;
+  box-shadow: -1px 1px 8px -3px;
   border-radius: 5px;
+
+  .title {
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 600;
+    background-color: #f26233;
+  }
 
   .selected__group {
     border: 1px solid orange;
@@ -17,6 +24,7 @@
   .group {
     padding: 0 10px;
     position: relative;
+    background-color: #fff;
   }
   
 
