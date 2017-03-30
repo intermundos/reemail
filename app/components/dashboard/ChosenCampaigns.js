@@ -1,21 +1,23 @@
 import './ChosenCampaigns.scss';
 import React from 'react';
 import { connect } from 'react-redux';
-import { _removeFromList } from '../../logic/reducks/homeDuck';
+import { _removeCampaignFromList, _removeProgramFromList } from '../../logic/reducks/homeDuck';
 import _ from 'lodash';
 
 const ChosenCampaigns = (props) => {
     const { _selected } = props;
-    console.log(_selected);
     let totalSelectedCampaigns = _.flatten(_.map(_selected, 'campaigns')).length;
     let totalSelectedPrograms = _.map(_selected, 'campaigns').length;
 
-
     return (
         <div className="chosen__list">
-            <div className="title">
-                { `Selected: ${ totalSelectedPrograms } Program${totalSelectedPrograms > 1 ? 's' : '' } with ${ totalSelectedCampaigns } Campaign${totalSelectedCampaigns > 1 ? 's' : '' }` }
-                </div>
+            {
+                totalSelectedPrograms > 1 ?
+                    <div className="title">
+                    { `Selected: ${ totalSelectedPrograms } Program${totalSelectedPrograms > 1 ? 's' : '' } with ${ totalSelectedCampaigns } Campaign${totalSelectedCampaigns > 1 ? 's' : '' }` }
+                    </div> :
+                    null
+            }
 
             {
                 Object.keys(_selected).map((item, index) => {
@@ -23,7 +25,10 @@ const ChosenCampaigns = (props) => {
 
                         <div className="selected__group" key={ item }>
                             <div className="group group__program">
-                                <div className="header">Program #{ item }</div>
+                                <div className="header">
+                                    <a className="delete is-medium" onClick={ ()=> props._removeProgramFromList(item) }/>
+                                    Program #{ item }
+                                </div>
                                 <div className="program__data">{ _selected[item].program.name }</div>
                             </div>
 
@@ -33,6 +38,7 @@ const ChosenCampaigns = (props) => {
                                     _selected[item].campaigns.map((c) => {
                                         return (
                                             <div className="campaign__unit" key={ c.id }>
+                                                <a className="delete is-small" onClick={ ()=> props._removeCampaignFromList(c, item) }/>
                                                 { c.id } - { c.name }
                                             </div>
                                         )
@@ -46,33 +52,7 @@ const ChosenCampaigns = (props) => {
                 })
             }
 
-            {/*{*/}
-                {/*Object.keys(selected).map((campaign, index) => {*/}
-                    {/*let pName = selected[campaign][index].program.name;*/}
-                    {/*let pID = selected[campaign][index].program.id;*/}
-                    {/*let campaigns = selected[campaign];*/}
-                    {/*return (*/}
-                        {/*<div className="selected__group" key={ index }>*/}
-                            {/*<div className="program__unit">*/}
-                                {/*<div className="header">Program:</div>*/}
-                                {/*<div className="program__data"> { pID } - { pName }</div>*/}
 
-                            {/*</div>*/}
-                            {/*<div className="campaigns__unit">*/}
-                                {/*<div className="header">Campaigns: </div>*/}
-                                {/*{*/}
-                                    {/*campaigns.map((c) => {*/}
-                                        {/*return (*/}
-                                            {/*<div className="campaign__unit" key={ c.campaign.id }>{ c.campaign.id } - { c.campaign.name }</div>*/}
-                                        {/*)*/}
-                                    {/*})*/}
-                                {/*}*/}
-                            {/*</div>*/}
-                        {/*</div>*/}
-                    {/*)*/}
-                {/*})*/}
-            {/*}*/}
-            {/*<a className="delete is-medium" onClick={ ()=> props._removeFromList(campaign) }></a>*/}
 
         </div>
     )
@@ -80,5 +60,5 @@ const ChosenCampaigns = (props) => {
 
 export default connect(
     (state) => ({ _selected: state.home.selectedCampaigns }),
-    { _removeFromList }
+    { _removeCampaignFromList, _removeProgramFromList }
 )(ChosenCampaigns);

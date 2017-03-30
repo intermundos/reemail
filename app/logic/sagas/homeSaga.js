@@ -2,8 +2,8 @@ import {takeEvery}       from 'redux-saga/effects';
 import {take, put, call, fork}       from 'redux-saga/effects';
 import  {SEARCH_REQUEST, SEARCH_REQUEST_SUCCESS, SEARCH_REQUEST_FAILURE}   from      '../reducks/homeDuck';
 import axios from 'axios';
-const programURL  = 'http://www.interspace.site/programsList.php?program_id=';
-const campaignURL = 'http://www.interspace.site/campaignsLists.php?program_id=';
+const programURL  = 'http://www.interspace.site/offertool/programsList.php?program_id=';
+const campaignURL = 'http://www.interspace.site/offertool/campaignsLists.php?program_id=';
 import isEmpty from 'lodash/isEmpty';
 
 const getProgram = (programID) => {

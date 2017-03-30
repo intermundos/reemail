@@ -1,4 +1,11 @@
 .chosen__list {
+  position: fixed;
+  right: 20px;
+  background-color: #f4f4f4;
+  z-index: 1;
+  padding: 10px;
+  //box-shadow: -1px 1px 8px -3px;
+  border-radius: 5px;
 
   .selected__group {
     border: 1px solid orange;
@@ -9,7 +16,9 @@
 
   .group {
     padding: 0 10px;
+    position: relative;
   }
+  
 
   .group .header {
     font-size: 1.8rem;
@@ -19,13 +28,36 @@
   }
 
   .group__program .header {
-    background-color: rgba(255, 106, 52, 0.64);
+    background-color: rgb(187, 187, 187);
     color: #000000;
+
+    .delete {
+      background-color: red;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+    }
 
   }
 
   .group__campaigns .header {
     background-color: rgba(129, 124, 75, 0.38);
+  }
+
+  .delete {
+    vertical-align: baseline;
+    margin-right: 5px;
+  }
+
+  .campaign__unit {
+    padding: 2px 0 0 5px;
+    margin: 0 -10px;
+  }
+
+  .campaign__unit:nth-of-type(2n+1) {
+    background: rgba(247, 229, 210, 0.42);
   }
 
 }
