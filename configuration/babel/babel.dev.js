@@ -14,7 +14,7 @@ module.exports = {
 				style: "css"
 			}
 		],
-		'react-hot-loader/babel',
+		// 'react-hot-loader/babel',
 		'transform-runtime',
 		'babel-plugin-transform-react-constant-elements'
 	]

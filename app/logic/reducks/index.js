@@ -1,3 +1,9 @@
-import counter from './counter';
+import  { combineReducers }   from      'redux';
 
-export { counter };
+
+import  home   from      './homeDuck';
+
+
+const rootDuck = combineReducers({ home });
+
+export default rootDuck;

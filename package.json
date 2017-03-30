@@ -51,7 +51,10 @@
   },
   "dependencies": {
     "antd": "^2.7.0",
+    "axios": "^0.15.3",
     "bulma": "^0.3.1",
+    "fetch-jsonp": "^1.0.6",
+    "jsonp": "^0.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "react": "^15.4.2",
