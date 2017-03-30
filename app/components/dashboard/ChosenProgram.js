@@ -6,7 +6,7 @@ import isObject from 'lodash/isObject';
 const ChosenProgram = (props) => {
     return (
         <div>
-            <div className="title">Chosen program: { props._program.id }</div>
+            { props._program.id ? <div className="title">Chosen program: { props._program.id }</div>: null }
             <table className="table is-bordered table__program">
                 <tbody>
                 {

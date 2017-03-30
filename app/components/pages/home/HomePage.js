@@ -3,7 +3,7 @@ import './Home.scss';
 
 import ChosenProgram from '../../dashboard/ChosenProgram';
 import ChosenCampaigns from '../../dashboard/ChosenCampaigns';
-import Campaigns from '../../Campaigns';
+import CampaignsContainer from '../../../containers/CampaignsContainer';
 
 class HomePage extends Component {
 
@@ -60,19 +60,12 @@ class HomePage extends Component {
                         }
                     </div>
                 </div>
-
                 <hr/>
-
                 <div className="dashboard">
                     <ChosenProgram />
                     <ChosenCampaigns />
                 </div>
-
-
-
-                <Campaigns />
-
-
+                <CampaignsContainer />
             </div>
         )
     }

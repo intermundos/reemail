@@ -7,7 +7,8 @@ const Header = () => {
 		<header className="header hero is-dark">
 			<div className="hero-body">
 				<div className="container">
-					<NavLink exact to={`/`} className="nav__item" activeClassName="active">Login</NavLink>
+					<NavLink exact to={`/`} className="nav__item" activeClassName="active">Home</NavLink>
+					<NavLink to={`/gate`} className="nav__item" activeClassName="active">Login</NavLink>
 				</div>
 			</div>
 		</header>
