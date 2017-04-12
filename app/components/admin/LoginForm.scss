@@ -1,0 +1,27 @@
+$mainColor: #299e57;
+
+.login__form {
+
+  .btn-login {
+    border: 0;
+    color: #fff;
+    margin-right: 0.5em;
+    width: 150px;
+    background-color: $mainColor;
+
+    &:hover {
+      background-color: $mainColor;
+      color: #fff;
+      box-shadow: 0 0 13px -8px #692621;
+    }
+  }
+
+  .btn-reset {
+    color: red;
+    margin-right: 0.2em;
+    border: 0;
+    text-decoration: underline;
+    background-color: transparent;
+
+  }
+}
